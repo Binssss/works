@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>弹窗效果</title>
+
+<script>
+function openWindow(){
+		window.status = "系统当前状态，您正在注册用户。。。。。";
+		if(window.screen.width == 1024 && window.screen.height ==768){
+				window.open("register.html");
+			}else{
+					alert("请设置分辨率为1024 X 768，然后打开！");
+				}
+	}
+	
+function closewindow(){
+		if(window.confirm("你确定要退出么？")){
+				window.close();
+			}
+	}
+
+</script>
+</head>
+
+<body>
+<table border="0" align="center" bgcolor="#ffffff">
+<tr><td><img src="images/head.jpg" width="761"	height="389"/></td></tr>
+<tr>
+	<td>
+    	<img src="images/foot.jpg" width="502" height="90" align="top"/>
+        <input type="button" name="regButton" value="注册" onclick="openWindow()">
+        <input type="button" name="exitButton" value="退出" onclick="closewindow()">
+    </td>
+
+</table>
+</body>
+</html>
