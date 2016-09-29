@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+
+form{
+	text-align:center;}
+
+
+</style>
+<script>
+window.onload = function(){
+		function $(eleid){
+				return document.getElementById(eleid);
+			}
+		var gd = new Array("珠海市","深圳市","湛江市");
+		var hn = new Array("长沙县","望城县");
+		var gx = new Array("桂林市","柳州市");
+		var zhuh = new Array("金湾区","香洲区");
+		var zhanj = new Array("赤坎区","霞山区");
+		var shenz = new Array("福田区","罗湖区");
+		var changs = new Array("天心区","雨花区");
+		var wangc = new Array("丁字镇","茶亭镇");
+		var guil = new Array("秀峰区","七星区");
+		var liuz = new Array("柳南区","鱼峰区");
+		var index;
+		
+			var shen = $("first").options[$("first").selectedIndex].value;	
+			switch(parseInt(shen)){
+				case 1:
+					$("g1").innerHTML = gd[0];
+					$("g2").innerHTML = gd[1];
+					$("g3").innerHTML = gd[2];
+					index = $("second").selectedIndex;
+					if(index==0){
+					$("t1").innerHTML = zhuh[0];
+					$("t2").innerHTML = zhuh[1];
+				}else if(index==1){
+					$("t1").innerHTML = shenz[0];
+					$("t2").innerHTML = shenz[1];
+				} else if(index==2){
+					$("t1").innerHTML = zhanj[0];
+					$("t2").innerHTML = zhanj[1];
+				}else {
+					$("t1").innerHTML = " ";
+					$("t2").innerHTML = " ";
+				}
+					
+				break;
+					
+				case 2:
+					$("g1").innerHTML = hn[0];
+					$("g2").innerHTML = hn[1];
+					
+				break;
+				
+				case 3:
+					$("g1").innerHTML = gx[0];
+					$("g2").innerHTML = gx[1];
+					
+				break;
+				default:
+					$("g1").innerHTML = " ";
+					$("g2").innerHTML = " ";
+					$("g3").innerHTML = " ";
+				break;
+			}
+			
+		
+		
+		$("first").onchange=function star(){
+			var shen = $("first").options[$("first").selectedIndex].value;	
+			switch(parseInt(shen)){
+				case 1:
+					$("g1").innerHTML = gd[0];
+					$("g2").innerHTML = gd[1];
+					$("g3").innerHTML = gd[2];
+					index = $("second").selectedIndex;					
+					if(index==0){
+					$("t1").innerHTML = zhuh[0];
+					$("t2").innerHTML = zhuh[1];
+				}else if(index==1){
+					$("t1").innerHTML = shenz[0];
+					$("t2").innerHTML = shenz[1];
+				} else if(index==2){
+					$("t1").innerHTML = zhanj[0];
+					$("t2").innerHTML = zhanj[1];
+				}else {
+					$("t1").innerHTML = " ";
+					$("t2").innerHTML = " ";
+				}
+						
+			$("second").onchange=function(){
+					index = $("second").selectedIndex;
+					
+					if(index==0){
+					$("t1").innerHTML = zhuh[0];
+					$("t2").innerHTML = zhuh[1];
+				}else if(index==1){
+					$("t1").innerHTML = shenz[0];
+					$("t2").innerHTML = shenz[1];
+				} else if(index==2){
+					$("t1").innerHTML = zhanj[0];
+					$("t2").innerHTML = zhanj[1];
+				}else {
+					$("t1").innerHTML = " ";
+					$("t2").innerHTML = " ";
+				}
+		}
+				break;
+					
+				case 2:
+					$("g1").innerHTML = hn[0];
+					$("g2").innerHTML = hn[1];
+					$("g3").innerHTML = " ";
+					index = $("second").selectedIndex;					
+					if(index==0){
+					$("t1").innerHTML = changs[0];
+					$("t2").innerHTML = changs[1];
+				}else if(index==1){
+					$("t1").innerHTML = wangc[0];
+					$("t2").innerHTML = wangc[1];
+				} else {
+					$("t1").innerHTML = " ";
+					$("t2").innerHTML = " ";
+				}
+					$("second").onchange=function(){
+					index = $("second").selectedIndex;					
+					if(index==0){
+					$("t1").innerHTML = changs[0];
+					$("t2").innerHTML = changs[1];
+				}else if(index==1){
+					$("t1").innerHTML = wangc[0];
+					$("t2").innerHTML = wangc[1];
+				} else {
+					$("t1").innerHTML = " ";
+					$("t2").innerHTML = " ";
+				}
+				}
+				break;
+				
+				case 3:
+					$("g1").innerHTML = gx[0];
+					$("g2").innerHTML = gx[1];
+					$("g3").innerHTML =" ";
+					index = $("second").selectedIndex;					
+					if(index==0){
+					$("t1").innerHTML = guil[0];
+					$("t2").innerHTML = guil[1];
+				}else if(index==1){
+					$("t1").innerHTML = liuz[0];
+					$("t2").innerHTML = liuz[1];
+				} else {
+					$("t1").innerHTML = " ";
+					$("t2").innerHTML = " ";
+				}
+				$("second").onchange=function(){
+							index = $("second").selectedIndex;					
+					if(index==0){
+					$("t1").innerHTML = guil[0];
+					$("t2").innerHTML = guil[1];
+				}else if(index==1){
+					$("t1").innerHTML = liuz[0];
+					$("t2").innerHTML = liuz[1];
+				} else {
+					$("t1").innerHTML = " ";
+					$("t2").innerHTML = " ";
+				}
+					}
+				break;
+				default:
+					$("g1").innerHTML = " ";
+					$("g2").innerHTML = " ";
+					$("g3").innerHTML = " ";
+					$("t1").innerHTML = " ";
+					$("t2").innerHTML = " ";
+				break;
+			}
+			
+		}
+	
+			
+	
+			
+			
+	}
+
+
+</script>
+</head>
+
+<body>
+<form>
+	<select id="first">
+    	<option value="1">广东省</option>
+        <option value="2">湖南省</option>
+        <option value="3">广西省</option>
+    </select>
+    
+    <select id="second">
+    	<option id="g1" ></option>
+        <option id="g2" ></option>
+        <option id="g3" ></option>
+        
+    </select>
+    
+    <select id="three">
+    	<option id="t1" ></option>
+        <option id="t2" ></option>
+    
+    </select>
+
+</form>
+</body>
+</html>
