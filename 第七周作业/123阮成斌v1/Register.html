@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户注册</title>
+<style>
+form{
+	text-align:center;}
+tr,td{
+	width:150px;
+	height:50px;
+	text-align:center;}
+</style>
+<script>
+
+function $(elementId){
+			return document.getElementById(elementId);
+		}
+
+function checkUser(){
+		var user = $("user").value;
+		var userid = $("userId");
+		userid.innerHTML = "";
+		var reg = /^[a-zA-z][a-zA-Z0-9]{3,15}$/;
+		if(reg.test(user)==false){
+				userid.innerHTML = "用户名不正确";
+				return false;
+			}
+		return true;
+	}
+	
+function checkPwd(){
+		var pwd = $("pwd").value;
+		var pwdid = $("pwdId");
+		pwdid.innerHTML = "";
+		var reg = /^[a-zA-Z0-9]{4,10}$/;
+		if(reg.test(pwd)==false){
+				pwdid.innerHTML = "密码长度应该在4-16位之间";
+				return false;
+			}
+		return true;
+	}
+	
+function checkRepwd(){
+			var repwd = $("repwd").value;
+			var pwd = $("pwd").value;
+			var repwdid = $("repwdId");
+			repwdid.innerHTML = "";
+			if(repwd!=pwd){
+					repwdid.innerHTML = "俩次输入密码不一致";
+					return false; 
+				}
+			return true;
+		}
+		
+function checkEmail(){
+		var email = $("email").value;
+		var emailid = $("emailId");
+		emailid.innerHTML = "";
+		var reg = /^\w+@\w+\.\w+[(com)|(cn)]$/;
+		if(reg.test(email)==false){
+				emailid.innerHTML = "Email格式不正确，例如web@sohu.com";
+				return false;
+			}
+		return true;
+	}
+window.onload =function checkSex(){
+	
+		$("man").onclick = function(){
+				this.checked == true;
+				$("woman").checked = false;
+			}
+		$("woman").onclick = function(){
+				this.checked == true;
+				$("man").checked = false;
+			}
+			
+	}
+</script>
+</head>
+
+<body>
+<form >
+<table cellpadding="0" cellspacing="0" border="0" id="mytable" align="center">
+	<tr>
+    	<td colspan="3"><img src="images/header1.jpg"></td>
+    </tr>
+	
+	<tr>
+    	<td>用户名:</td>
+        <td><input type="text" id="user" onblur="checkUser()" /></td>
+        <td><div id="userId">用户名由4-16位字符组成，不能包含数字</div></td>
+    </tr>
+    <tr>
+    	<td>密码:</td>
+        <td><input type="password" id="pwd" onblur="checkPwd()" /></td>
+        <td><div id="pwdId">密码由4-10位字符组成</div></td>
+    </tr>
+    <tr>
+    	<td>确认密码:</td>
+        <td><input type="password" id="repwd" onblur="checkRepwd()" /></td>
+        <td><div id="repwdId"></div></td>
+    </tr>
+    <tr>
+    	<td>性别:</td>
+        <td><input type="radio" id="man" />男 &nbsp;<input type="radio" id="woman" />女</td>
+        <td><div id="sex"></div></td>
+    </tr>
+    <tr>
+    	<td>电子邮箱:</td>
+        <td><input type="text" id="email" onblur="checkEmail()" /></td>
+        <td><div id="emailId"> 邮箱格式示例：web@126.com</div></td>
+    </tr>
+    <tr>
+    <td>出生日期:</td>
+    <td><select id="year">
+			<script>   
+            	for(var i=1900;i<=2009;i++){
+					document.write("<option value ="+i+">"+i+"</option>");
+					}
+            </script>
+    	</select>
+        <select id="month">
+        	<script>   
+            	for(var i=1;i<=12;i++){
+					document.write("<option value ="+i+">"+i+"</option>");
+					}
+            </script>
+        </select>
+        <select id="date">
+        	<script>   
+            	for(var i=1;i<=31;i++){
+					document.write("<option value ="+i+">"+i+"</option>");
+					}
+            </script>
+        </select>
+    </td>
+    </tr>
+   	<tr>
+    <td colspan="3"><input type="submit" value="注册" />&nbsp;
+    				<input type="reset" value="清除" /></td>
+   </tr>
+
+</table>
+</form>
+</body>
+</html>

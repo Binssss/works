@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>三级连动</title>
+<style>
+
+#main{	
+	
+	background-image:url(images/main.jpg);
+	background-repeat:no-repeat;
+	margin-top:200px;
+	width:300px;
+	height:150px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left:350px;
+	padding-top:80px;}
+</style>
+<script src="data.js"></script>
+<script>
+			
+window.onload =function(){
+	var province = document.getElementById("sheng");
+	var city =document.getElementById("shi");
+	var area = document.getElementById("qu");
+				
+		for(var i=0;i<world.length;i++){
+			if(world[i].id.substr(0,2)=="00"){
+				province.add(new Option(world[i].name,world[i].id));
+			}			
+		}
+		city.onchange=function showarea(){
+			area.innerHTML = "";
+			area.add(new Option("市、县级市、县"));
+		  	for(var i=0;i<world.length;i++){
+					if(city.value.substr(1,2)==world[i].id.substr(0,2)){
+							area.add(new Option(world[i].name,world[i].id));
+						}
+				}
+				
+		}
+	province.onchange=function showcity(){
+	  		city.innerHTML = "";area.innerHTML = "";
+			city.add(new Option("地级市"));area.add(new Option("市、县级市、县"));
+		for(var i=0;i<world.length;i++){
+				if(province.value.substr(1,2)==world[i].id.substr(0,2)){
+						city.add(new Option(world[i].name,world[i].id));
+					}
+			}
+			
+	}	
+	 
+}
+
+		
+</script>
+</head>
+<body>
+
+<div id="main">
+	<select id="sheng" ><option>省份</option>  </select>
+      
+    <select id="shi" ><option>地级市</option> </select>      
+   
+    <select id="qu"><option>市、县级市、县</option> </select>
+
+</div>
+
+</body>
+</html>
