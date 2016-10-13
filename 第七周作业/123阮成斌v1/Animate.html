@@ -5,18 +5,24 @@
 <title>淡入淡出效果</title>
 <style>
 #main{
-	text-align:center;
+	
 	width:400px;
-	height:300px;}
+	height:600px;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:#CCC;}
 	
 .alpha{
 	 filter:alpha(Opacity=20);
 	 opacity:0.2;
 }
+a:hover{
+	color:#F90;}
+form{
+	float:right;
+	position:fixed;}
 
-#second{
-	
-}
+
 </style>
 <script>
 
@@ -70,7 +76,7 @@ function fatein(){
 
 <body>
 <div id="main">
-<ul>
+<ul  id="second">
 	<li><a href="#">佳能</a></li>
     <li><a href="#">索尼</a></li>
     <li><a href="#">三星</a></li>
@@ -82,8 +88,6 @@ function fatein(){
     <li><a href="#">宾得</a></li>
     <li><a href="#">理光</a></li>
     <li><a href="#">奥林巴斯</a></li>
-</ul>    
-<ul id="second">
 	<li><a href="#">明基</a></li>
     <li><a href="#">爱国者</a></li>
     <li><a href="#">柯达</a></li>
