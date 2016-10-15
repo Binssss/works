@@ -74,15 +74,27 @@
     color:#f50;
   }
 </style>
+<script src="js/jquery-1.9.1.min.js"></script>
 <script>
-function clos(){
-		var obj = document.getElementById("close");
-		if(obj.style.display == 'none'){
-				obj.style.display = 'block';
-			}else{
-				obj.style.display = 'none';
-				}
-	}
+$(function(){
+		var $category = $("ul li:gt(5):not(:last)");
+		$category.hide();
+		var $toggleBtn = $("div.showmore>a");
+		$toggleBtn.click(function(){
+				if($category.is(":visible")){
+						$category.hide();
+						$(".showmore a span").css("background","url(images/down.gif) no-repeat 0 0").text("显示全部品牌");
+						$("ul li").remove("promoted");
+						return false;
+					}else{
+						$category.show();
+						$(".showmore a span").css("background","url(images/down.gif) no-repeat 0 0").text("精简显示品牌");
+						$("ul li:contains('佳能'),ul li:contains('尼康'),ul li:contains('奥林巴斯')").addClass("promoted");
+						return false;
+						}
+			});
+		
+	});
 </script>
 </head>
 <body>
@@ -100,8 +112,6 @@ function clos(){
       <li><a href="#">柯达</a></li>
       <li><a href="#">宾得</a></li>
       <li><a href="#">理光</a></li>
-      </ul>
-      <ul id="close">
       <li><a href="#">奥林巴斯</a></li>
       <li><a href="#">明基</a></li>
       <li><a href="#">爱国者</a></li>
@@ -113,7 +123,7 @@ function clos(){
       <li><a href="#">爱国者</a></li>
       <li><a href="#">其它品牌相机</a></li>
 	</ul>
-	<div class="showmore" onclick="clos()"><a href="#"><span>显示全部品牌</span></a></div>
+	<div class="showmore" ><a href="#"><span>显示全部品牌</span></a></div>
   </div>
 </body>
 </html>
