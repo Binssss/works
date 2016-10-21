@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div{
+	width:200px;
+	height:200px;
+	background-color:#F36;
+	position:absolute;}
+</style>
+<script>
+window.onload = function (){
+		var divs = document.createElement("div");
+		divs.style.cssText = "width:100px;height:100px;background:reg;postion:absolute;left:0;top:0;";
+		var spans = document.createElement("span");
+		spans.innerHTML = "X";
+		spans.style.cssText = "padding:5px;float:right;border:1px solid #ccc;cursor:pointer";
+		divs.appendChild(spans);
+		document.body.appendChild(divs);
+			var xspeed = 10;
+			var yspeed = 10;
+			var cw = document.documentElement.clientWidth;
+			var ch = document.documentElement.clientHeight;
+		
+		function move(){
+		
+			if(divs.offsetTop>ch - divs.offsetHeight||divs.offsetTop<0){
+					yspeed *= -1;
+				}
+			if(divs.offsetLeft>cw - divs.offsetWidth||divs.offsetLeft<0){
+					xspeed *= -1;
+				}			
+			divs.style.left = divs.offsetLeft + xspeed +"px";
+			divs.style.top  = divs.offsetTop + yspeed + "px";
+			}
+		
+		var t = setInterval(move,100);
+		
+		divs.onmouseover = function(){
+				clearInterval(t);
+			}
+		divs.onmouseout = function(){
+				t =setInterval(move,100);
+			}
+		spans.onclick = function(){
+				document.body.remove(divs);
+			}
+		
+	}
+	
+
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

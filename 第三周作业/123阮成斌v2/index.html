@@ -1,0 +1,363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>My Blog</title>
+
+
+<style type="text/css">
+#contain {
+	height: 1030px;
+	width: 756px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FFF;
+}
+#lefttop {
+	height: 30px;
+	width: 190px;
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+}
+#top {
+	background-image: url(images/top.jpg);
+	height: 155px;
+	width: 756px;
+}
+#leftsecond {
+	font-weight: bold;
+	height: 35px;
+	width: 190px;
+}
+#leftbotton {
+	height: 250px;
+	width: 190px;
+}
+.topinner {
+	padding-top: 110px;
+	height: 20px;
+	color:#FFF;
+	font-weight: bold;
+}
+#left {
+	float: left;
+	height: 683px;
+	width: 190px;
+}
+#right {
+	height: 703px;
+	width: 756px;
+}
+#view {
+	height: 20px;
+	width: 534px;
+	padding-left: 30px;
+	font-weight: bold;
+}
+#photo {
+	height: 210px;
+	width: 534px;
+	padding-left: 30px;
+	padding-top: 10px;
+	float: left;
+}
+#shanghai {
+	height: 20px;
+	width: 564px;
+	font-weight: bold;
+	padding-top: 10px;
+	float: left;
+}
+#laojie {
+	height: 120px;
+	width: 564px;
+	text-align: left;
+	float: left;
+}
+#day1 {
+	height: 20px;
+	width: 164px;
+	padding-left: 400px;
+	float: left;
+}
+#read {
+	height: 20px;
+	width: 244px;
+	padding-left: 320px;
+	float: left;
+	color:#000;
+}
+
+#suzhou{
+	height: 20px;
+	width: 564px;
+	font-weight: bold;
+	padding-top: 10px;	
+	float: left;
+}
+#day2 {
+	height: 20px;
+	width: 164px;
+	padding-left: 400px;
+	float: left;
+}
+
+#gucheng {
+	height: 120px;
+	width: 564px;
+	text-align: left;
+	float: left;
+}
+
+#read2 {
+	height: 20px;
+	width: 244px;
+	padding-left: 320px;
+	float: left;
+	color:#000;
+}
+#end {
+	height: 102px;
+	width: 756px;
+	float: left;
+}
+
+#pdate{
+	font-size:22px;
+	text-align = center;
+}
+
+#leftend{
+	width: 190px;	
+	}
+#leftend {
+	height: 370px;
+	width: 190px;
+	background-repeat: no-repeat;
+}
+
+#bknew{
+	text-align = center;
+	color:#36F;
+	font-weight:bold;
+	
+	}
+	
+.ziti{
+	color:#FFF;	
+}
+a:link {
+	color:#C66;
+	text-decoration: none;
+}
+a:visited {
+	color:#09F;
+	text-decoration: none;
+}
+a:hover {
+	color:#FF0;
+	text-decoration: none;
+}
+a:active {
+	
+	text-decoration: none;
+}
+
+#time{
+	cursor:pointer;}
+</style>
+<script>
+
+	
+	
+		
+
+function printDate(){
+		var mydate = new Date();
+		var count = 1;
+		var day = mydate.getDate();
+		var month = mydate.getMonth();
+		var year = mydate.getFullYear();
+		var max;
+		var FirstDay=new Date(year,month,1).getDay();
+	
+		html = "<tr>";
+		switch(month){
+				case 1:
+				case 3:
+				case 5:
+				case 7:
+				case 8:
+				case 10:
+				case 12:
+					max = 31;
+					break;
+				case 4:
+				case 6:
+				case 9:
+				case 11:
+					max = 30;
+					break;
+				default:
+					max = 29;
+					break;
+			}
+		for(var i=1;i<=FirstDay;i++){
+		html += "<td style=\"cursor:default;\">"+"</td>";		
+		count++;
+	}
+		
+		for(var i=1;i<=max;i++){
+				
+				if(i==day){
+			html+="<td style=\"background-color:#FF6840;color:#FFFFFF;\">"+i+"</td>";
+			}else{html += "<td>"+i+"</td>";}
+
+				if(count==7){
+						html += "<tr>"+"</tr>";
+						count = 0;
+					}
+				count++;
+			}
+		$("pdate").innerHTML = html + "</tr>";
+		
+
+	}
+
+function $(elementId){
+		return document.getElementById(elementId);
+	}
+function showTime(){
+		var myDate = new Date();
+		var year = myDate.getFullYear();
+		var month = myDate.getMonth() + 1;
+		var day = myDate.getDate();
+		var hour = myDate.getHours();
+		var minutes = myDate.getMinutes();
+		var seconds = myDate.getSeconds();
+		
+		if(hour<10){
+				hour = "0"+hour ;
+			}
+		if(minutes<10){
+				minutes = "0" + minutes;
+			}
+		if(seconds<10){
+				seconds = "0" + seconds;
+			}
+		document.getElementById("time").innerHTML = "当前时间"+year+"-"+month+"-"+day+"&nbsp;"+hour+":"+minutes+":"+seconds;
+		setTimeout("showTime()",1000);
+}
+
+
+
+function nowtime(){
+		var mydate = new Date();
+		var year = mydate.getFullYear();
+		var month = mydate.getMonth();
+		var day = mydate.getDate();
+		$("lefttop").innerHTML = year +"年"+(month+1)+"月"+day+"日";
+}
+
+
+	window.onload = printDate;
+	
+</script>
+</head>
+
+<body onload="nowtime()">
+
+
+<div id="contain">
+  <div id="top">
+  <div id="as" class="topinner">
+  <table width="756" border="0" align="center"  >
+  <tr>
+    <td height="39" align="center" valign="bottom" id="time" ></td>
+    <td width="60" align="center" valign="bottom"><a href="#">首页</a></td>
+    <td width="60" align="center" valign="bottom"><a href="#">相册</a></td>
+    <td width="65" align="center" valign="bottom"><a href="#">留言</a></td>
+    <td width="65" align="center" valign="bottom"><a href="#">搜索</a></td>
+    <td width="65" align="center" valign="bottom"><a href="#">登录</a></td>
+    <td width="65" align="center" valign="bottom"><a href="#">注册</a></td>
+  </tr>
+</table>
+  </div>
+</div>
+  <div id="left">
+    <div id="lefttop"></div>
+    <div id="leftsecond"><table width="190" border="0">
+  <tr>
+    <td align="center">日</td>
+    <td align="center">一</td>
+    <td align="center">二</td>
+    <td align="center">三</td>
+    <td align="center">四</td>
+    <td align="center">五</td>
+    <td align="center">六</td>
+  </tr>
+</table>
+</div>
+    <div id="leftbotton" ><table id="pdate"></table></div>
+    <div id="leftend">
+      <table width="190" border="0" id = "bknew">
+        <tr>
+          <td  bgcolor="#000000" class="ziti">博客基本信息</td>
+        </tr>
+        <tr>
+          <td>用户名：那一年冬天</td>
+        </tr>
+        <tr>
+          <td>等级：初来乍到</td>
+        </tr>
+        <tr>
+          <td>威望：10</td>
+        </tr>
+        <tr>
+          <td>金钱：25</td>
+        </tr>
+        <tr>
+          <td>在线时间：714分钟</td>
+        </tr>
+        <tr>
+          <td>日志总数：6</td>
+        </tr>
+        <tr>
+          <td>评论数量：4</td>
+        </tr>
+        <tr>
+          <td>访问次数：118</td>
+        </tr>
+        <tr>
+          <td>建立时间：2016-9-20</td>
+        </tr>
+      </table>
+    </div>
+   
+  </div>
+  <div class="tu" id="right">
+    <div id="view">旅途风光</div>
+    <div id="photo"><img src="images/scenery1.jpg" width="500" height="200" /></div>
+    
+    <div id="shanghai">上海老街印象</div>
+    <div id="day1">2011-01-28 18:16</div>
+    
+    <div id="laojie">上海老街，又称小东门，这里曾是100年前上海开埠后最早灯火辉煌、万商云集的地方，地处上海市黄浦区老城厢，也就是小东门城门所在地。由于历史原因，城门没有被保留下来，但是老城厢环城的9扇门至今仍深深刻在上海人民心中。上海老街所在的小东门地区，原是上海对外贸易、小商品交易的重要场地，见证了上海的经济社会发展</div>
+    <div id="read"><a href="#">阅读全文（27）</a>|<a href="#">回复（0）</a>|<a href="#">推送</a></div>
+    
+    <div id="suzhou">苏州游记之山塘</div>
+    <div  id="day2">2012-10-25 18:11</div>
+    <div id="gucheng">山塘街位于古城苏州的西北部，东连红尘中一二等富贵风流之地阊门，西接吴中第一名胜虎丘，全长3600米，因此被称作七里山塘。山塘街始建于公元825年，为唐朝大诗人白居易来苏州担任刺史时所建。有民歌唱到上有天堂，下有苏杭。杭州有西湖，苏州有山塘。两处好地方，无限好风光。这便是对山塘街的生动写照。</div>
+    <div id="read2"><a href="#">阅读全文（27）</a>|<a href="#">回复（0）</a>|<a href="#">推送</a></div>
+    
+  </div>
+  <div id="end"><img src="images/bottom.jpg"></div>
+  
+
+
+
+</div>
+</body>
+
+</html>
