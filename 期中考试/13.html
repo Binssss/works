@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+input,button{margin:2px 10px;}
+td{text-align:center;}
+
+</style>
+<title>购物车</title>
+<script>
+window.onload=function(){
+	addRow("玫瑰保湿睡眠面膜",1,"48");
+	addRow("康师傅方便面",10,"5");
+	getPrice();	
+}
+function checkAll(){
+	var chk=document.getElementsByClassName("chs");	
+	for(var i=0;i<chk.length;i++){
+		if(document.getElementById("chsall").checked)
+			chk[i].checked=true;
+		else chk[i].checked=false;
+	}	
+}
+function getPrice(){
+	var pricelist=document.getElementsByClassName("price");
+	var n=document.getElementsByClassName("quantity");
+	var totalprice=0;
+	for(var i=0;i<pricelist.length;i++){
+		//console.log(n);
+		totalprice+=parseInt(pricelist[i].innerText.substr(1,pricelist[i].length)*parseInt(n[i].innerText));			
+	}
+	document.getElementById("totalprice").innerHTML="合计：&yen;"+totalprice;
+}
+
+function addRow(name,quantity,price){
+	document.getElementById("chsall").checked=false;
+	var row=document.getElementById("order").insertRow(1);
+	var col1=row.insertCell(0);
+	col1.innerHTML=name;
+	var col2=row.insertCell(1);
+	col2.innerHTML='<span class="quantity">'+quantity+'</span>';
+	var col3=row.insertCell(2);
+	col3.innerHTML='<span class="price">&yen;'+price+'</span>';
+	var col4=row.insertCell(3);
+	col4.innerHTML="<button onclick='editRow(this)'>修改</button><button onclick='delRow(this)'>删除</button><input class='chs' type='checkbox' />";
+	getPrice();	
+}
+function delRow(obj){
+	var row=obj.parentNode;
+	row=row.parentNode;
+	row.parentNode.removeChild(row);
+	getPrice();		
+}
+function editRow(obj){
+
+	var childs=obj.parentNode.parentNode.childNodes;	
+	if(obj.innerText=="修改"){
+		childs[0].innerHTML="<td><input style='width:120px;text-align:center;' type='text' value="+childs[0].innerText+"></td>"
+		childs[1].innerHTML="<td><input style='width:50px;text-align:center;' type='text' value="+childs[1].innerText+"></td>"
+		childs[2].innerHTML="<td><input style='width:50px;text-align:center;' type='text' value="+childs[2].innerText+"></td>"	
+		obj.innerText="确认"
+	}else{
+		obj.innerHTML="修改";		
+		childs[0].innerHTML="<td>"+childs[0].firstChild.value+"</td>"
+		childs[1].innerHTML="<td><span class='quantity'>"+childs[1].firstChild.value+"</span></td>"
+		childs[2].innerHTML="<td><span class='price'>"+childs[2].firstChild.value+"</span></td>"
+		getPrice();	
+	}
+	
+
+}
+function delAll(){
+	var chk=document.getElementsByClassName("chs");	
+	for(var i=chk.length-1;i>=0;i--){
+		if(chk[i].checked==true){		
+			chk[i].parentNode.parentNode.parentNode.removeChild(chk[i].parentNode.parentNode);
+		}
+	}getPrice();	
+	document.getElementById("chsall").checked=false;
+}
+
+
+</script>
+</head>
+
+<body>
+<table cellpadding="0" cellspacing="0" border="5" align="center" id="order">
+<tr >
+	<td>商品名称</td>
+    <td>数量</td>
+    <td>单价</td>
+    <td colspan="3">操作</td>
+</tr>
+
+<tr id="end">
+<td id="totalprice" colspan="3">合计：</td>
+<td><input type="button" id="add"  value="添加" onclick="addRow('金克拉狗眼','1','99')"/><input type="button" value="删除" onclick="delAll()"/><input id="chsall" type="checkbox" onclick="checkAll()" /></td>
+</tr>
+
+
+</table>
+</body>
+</html>

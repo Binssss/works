@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>游戏角色</title>
+
+<style>
+#main{
+	
+	text-align:center;
+	background-image:url(images/14/bg.jpg);
+	margin-left:auto;
+	margin-right:auto;
+	width:666px;
+	height:350px;
+
+	}
+<br />
+#img{
+	width:250px;
+}
+</style>
+
+<script>
+window.onload = function(){
+	
+var al = [{"name":"联盟","id":"0001"},{"name":"部落","id":"0002"},{"name":"人类","id":"0011"},{"name":"午夜精灵","id":"0012"},{"name":"矮人","id":"0013"},{"name":"侏儒","id":"0014"},{"name":"兽人","id":"0021"},{"name":"牛头人","id":"0022"},{"name":"亡灵","id":"0023"},{"name":"巨魔","id":"0024"}];
+	var lm = document.getElementById("lm");
+	var bl = document.getElementById("bl");
+	var img = document.getElementsByTagName("img");
+	for(var i=0;i<al.length;i++){
+			if(al[i].id.substr(1,2)=="00"){
+					lm.add(new Option(al[i].name,al[i].id));
+				}
+				
+		}
+		
+	lm.onchange = function showrow(){
+			bl.innerHTML = "";
+			bl.add(new Option("请选择角色"));
+			for(var i=0;i<al.length;i++){
+					if(lm.value.substr(2,2)==al[i].id.substr(1,2)){
+							bl.add(new Option(al[i].name,al[i].id));
+						}
+				}
+			
+		}
+		
+	bl.onchange = function showimg(){
+			for(var i=0;i<img.length;i++){
+					if(bl.value==img[i].id){
+							img[i].style.display = "block";
+						}else{
+							img[i].style.display = "none";
+							}
+				}
+			
+		}
+
+	}
+
+
+</script>
+</head>
+
+<body>
+<div id="main">
+<div><h2>魔兽世界八大种族</h2></div>
+<div >阵营选择<select id="lm"><option>请选择阵营</option></select><br/>
+角色选择<select id="bl"><option>请选择角色</option></select></div>
+<div id="img" align="center">
+<img src="images/14/nightelves-small.jpg" style="display:none" id="0012">
+<img src="images/14/dwarves-small.jpg" style="display:none" id="0013">
+<img src="images/14/gnomes-small.jpg" style="display:none" id="0014">
+<img src="images/14/humans-small.jpg" style="display:none" id="0011">
+
+<img src="images/14/orcs-small.jpg" style="display:none" id="0021">
+<img src="images/14/tauren-small.jpg" style="display:none" id="0022">
+<img src="images/14/trolls-small.jpg" style="display:none" id="0024">
+<img src="images/14/undead-small.jpg" style="display:none" id="0023">
+</div>
+</div>
+</body>
+</html>

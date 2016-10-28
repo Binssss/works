@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注册表</title>
+<style>
+#main{	
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;}
+td{
+	height:20px;
+	width:250px;}
+</style>
+<script>
+
+	function $(element){
+			return document.getElementById(element);
+		}
+	function checkUser(){
+			var user = $("user").value;
+			var usid = $("userid");
+			usid.innerHTML = "";
+			var reg=/^[a-zA-Z][a-zA-Z_]{4,9}$/;
+			if(reg.test(user)==false){
+					usid.innerHTML = "<span style:color='reg'>用户名不正确</span>";
+					return false;
+				}else{
+					usid.innerHTML = "填写正确";
+					return true;
+					}
+			
+		}
+	function checkPwd(){
+			var pwd = $("pwd").value;
+			var pwdid = $("pwdid");
+			pwdid.innerHTML = "";
+			var reg= /^\w{6,10}$/;
+			if(reg.test(pwd)==false){
+				pwdid.innerHTML = "密码输入不正确";
+				return false;
+				}else{
+					pwdid.innerHTML = "填写正确";
+					return true;
+					}
+			
+		}
+	function checkRepwd(){
+			var pwd = $("pwd").value;
+			var repwd = $("repwd").value;
+			var repwdid = $("repwdid");
+			repwdid.innerHTML = "";
+			if(pwd!=repwd){
+				repwdid.innerHTML = "俩次输入密码不一致";
+				}else{
+					repwdid.innerHTML = "填写正确";
+					return true;
+					}
+			
+		}
+		
+	function checkEmail(){
+			var email = $("email").value;
+			var emailid = $("emailid");
+			emailid.innerHTML = "";
+			var reg=/^[a-zA-Z]+\w+@\w+\.((com)|(cn))$/;
+			if(reg.test(email)==false){
+				emailid.innerHTML = "邮箱格式不正确";
+				return false;
+				}else{
+					emailid.innerHTML = "填写正确";
+					return true;
+					}
+				
+		}
+
+	
+	function resetall(){
+			var len = document.getElementsByName("ss");
+			for(var  i=0;i<len.length;i++){
+					len[i].value = "";
+				}
+		}
+	  function check(){  
+        var clientHeight = document.getElementById("text").clientHeight;  
+        var scrollTop    = document.getElementById("text").scrollTop;  
+        var scrollHeight = document.getElementById("text").scrollHeight;  
+          
+        if(clientHeight + scrollTop < scrollHeight){  
+            alert("只有阅读完才可以提交表单!");			
+			return false;  
+        }else{  
+           if(checkUser() &&  checkPwd() && checkRepwd() && checkEmail()){
+					return true;
+				}else{
+					alert("只有所以注册内容填写正确才可以提交！");
+					return false;
+					}  			
+        }  
+    }	
+	
+/*	function checkedBirth(){
+			var today = new Date();
+			var year2 = today.getFullYear();
+			var month2 = today.getMonth();
+			var day2 = today.getDate();
+		var year=document.getElementById("year").value;
+		var month=document.getElementById("month").value;
+		var day=document.getElementById("day").value;
+		
+		if(year2==year){
+				if( month2<month){
+				return false;
+				alert("出生日期不能超过今天！！");
+			}else if(month2==month && day2<day){
+				return false;
+				alert("出生日期不能超过今天！！");
+				}else{
+						return true;
+					}
+			}
+		alert("aaa");
+		}*/
+	
+	var mydate=new Date();
+window.onload = function(){
+		var year=document.getElementById("year");
+		var month=document.getElementById("month");
+		var day=document.getElementById("day");
+		for(var y=mydate.getFullYear();y>=1970;y--){
+			year.add(new Option(y,y));	
+		}
+	
+	
+		for(var m=1;m<=12;m++){
+			if (m-1==mydate.getMonth())
+				month.add(new Option(m,m,true,true));	
+			else month.add(new Option(m,m));
+		}
+	
+
+		fetchDay(0);
+		
+	}
+	function fetchDay(i){
+		var monthdays=new Date(year.value,month.value,0).getDate();
+		day.innerHTML="";
+				
+		for(var d=1;d<=monthdays;d++){	
+		if(d==mydate.getDate()&&i==0)		
+			day.add(new Option(d,d,true,true));
+			else day.add(new Option(d,d));
+		}
+				
+			
+
+	
+			
+		$("man").onclick = function(){
+				this.checked == true;
+				$("feman").checked = false;
+			}
+		$("feman").onclick = function(){
+				this.checked == true;
+				$("man").checked = false;
+			}
+	}
+	
+
+</script>
+</head>
+
+<body>
+<div id="main">
+<div >
+注册步骤： 1.填写信息 &gt;2.收电子邮件  &gt; 3.注册成功 <img src="images/12/reg.gif">
+</div>
+<table cellpadding="0" cellspacing="0" border="2" bordercolor="#00CCFF" align="center">
+<form onsubmit="return check();" method="post" action="12-2.html"> 
+<tr>
+	<td>登录名：</td>
+    <td><input name="ss" type="text"  id="user" onblur="checkUser()" /></td>
+    <td><div id="userid">可包含字母和下划线</div></td>
+</tr>
+<tr>
+	<td>密码：</td>
+    <td><input name="ss" type="password" id="pwd" onblur="checkPwd()" /></td>
+    <td><div id="pwdid">至少包含 6 个字符</div></td>
+</tr>
+<tr>
+	<td>再次输入密码：</td>
+    <td><input name="ss" type="password" id="repwd" onblur="checkRepwd()"  /></td>
+    <td><div id="repwdid"></div></td>
+</tr>
+<tr>
+	<td>电子邮箱：</td>
+    <td><input name="ss" type="text" id="email" onblur="checkEmail()" /></td>
+    <td><div id="emailid"></div></td>
+</tr>
+<tr>
+	<td>性别：</td>
+    <td colspan="2"><input type="radio" id="man" value="男" checked><img src="images/12/Male.gif">&nbsp;&nbsp;<input type="radio" id="feman" class="input" value="女"><img src="images/12/Female.gif"></td>
+    
+</tr>
+<tr>
+	<td>爱好：</td>
+    <td colspan="2"><input type="checkbox"/>运动<input type="checkbox"/>聊天<input type="checkbox"/>玩游戏</td>
+    
+</tr>
+<tr>
+	<td>出生日期：</td>
+    <td colspan="2" id="birdate">
+    <select id="year" onchange="fetchDay(1)"></select>年   
+    <select id="month" onchange="fetchDay(1)"></select>月
+    <select id="day"  ></select>日
+    </td>
+    
+</tr>
+<tr>
+	<td><input type="reset" value="重填" id="reset" onclick="resetall()" /></td>
+    <td colspan="2"><input type="submit" value="同意以下条款，提交注册信息"  ></td>  
+</tr>
+<tr>
+	<td colspan="3"><img src="images/12/read.gif">阅读淘宝网服务协议</td>
+</tr>
+<tr>
+	<td colspan="3"><TEXTAREA name="textarea" cols="80" rows="6" class="borderBox" id="text">
+欢迎阅读服务条款协议，本协议阐述之条款和条件适用于您使用Taobao.com网站的各种工具和服务。
+本服务协议双方为淘宝与淘宝网用户，本服务协议具有合同效力。 
+淘宝的权利和义务
+1.淘宝有义务在现有技术上维护整个网上交易平台的正常运行，并努力提升和改进技术，使用户网上交易活动的顺利。 
+2.对用户在注册使用淘宝网上交易平台中所遇到的与交易或注册有关的问题及反映的情况，淘宝应及时作出回复。 
+3.对于在淘宝网网上交易平台上的不当行为或其它任何淘宝认为应当终止服务的情况，淘宝有权随时作出删除相关信息、终止服务提
+
+供等处理，而无须征得用户的同意。 
+4.因网上交易平台的特殊性，淘宝没有义务对所有用户的注册资料、所有的交易行为以及与交易有关的其他事项进行事先审查。 	
+		  </TEXTAREA></td>
+</tr>
+</form>
+</table>
+</div>
+</body>
+</html>
