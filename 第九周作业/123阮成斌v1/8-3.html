@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电子邮件删除效果</title>
+<link rel="stylesheet" type="text/css" href="css/style3.css">
+
+<script src="js/jquery-1.8.3.min.js"></script>
+<script>
+	var allchecked=0;
+	function check(){
+		if(allchecked==0){
+				$(":checkbox").attr("checked",true);
+				allchecked=1;				
+			}else{
+				$(":checkbox").attr("checked",false);
+				allchecked=0;
+			}
+
+		}
+	function del(){
+			$(":checkbox").each(function() {
+                if($(this).attr("checked"))$(this).parent().parent().remove();
+            });
+		}
+/*
+那个click 函数用了没反应，不知道原因，所以改成这样
+
+*/	
+
+</script>
+</head>
+
+<body>
+<div class="warp">
+<p>收件箱</p>
+<table cellpadding="0" cellspacing="0" align="center">
+
+	<tr>
+    	<td>状态</td>
+        <td>发件人</td>
+        <td>主题</td>
+    </tr>
+    <tr>
+    	<td><input type="checkbox" name="select" value="select"></td>
+        <td>立德</td>
+        <td>周末去爬山，去么？</td>
+    </tr>
+    <tr>
+    	<td><input type="checkbox" name="select" value="select"></td>
+        <td>徳培</td>
+        <td>大爷，你的工作表还没交</td>
+    </tr>
+     <tr>
+    	<td><input type="checkbox" name="select" value="select"></td>
+        <td>Moscow</td>
+        <td>Are you free tomorrow night?I'm wondering if you're free for dinner</td>
+    </tr>
+     <tr>
+    	<td><input type="checkbox" name="select" value="select"></td>
+        <td>淮南</td>
+        <td>一不小心闹饥荒，求赞助啊，米大爷</td>
+    </tr>
+     <tr>
+    	<td><input type="checkbox" name="select" value="select"></td>
+        <td>XXXX公司</td>
+        <td>恭喜你，获得我们公司的一等奖：价值1分钱的taotao!</td>
+    </tr>
+
+</table>
+<div>
+    <a><span onclick="check()">全选/全不选</span></a>
+    <a><span onclick="del()">删除邮件</span></a>
+</div>
+</div>
+</body>
+</html>
