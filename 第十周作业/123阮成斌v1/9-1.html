@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微博计数统计</title>
+<style>
+#main{
+margin-left:auto;
+margin-right:auto;
+background-image:url(image/pl.jpg);
+width:490px;
+height:218px;	
+	}
+.textInput{color:
+#c00;
+	font-size:36px;
+	font-weight:bold;
+
+}
+.Input{ height:60px;
+width:400px;}
+#second{
+	
+	float:right;
+	width:230px;
+	height:40px;
+	padding-top:0px;
+	padding-left:0px;
+	margin-top:60px;
+	font-size:20px;
+	font-weight:bold;
+	color:#36F;
+}
+#txt{
+	width:440px;
+	height:100px;
+	float:right;
+	padding-top:10px;
+	text-align:right;}
+#pri{
+	
+	height:70px;
+	width:430px;
+	overflow:hidden;
+	}
+.radio{
+	cursor:pointer;
+	width:200px;
+	height:30px;
+	font-size:24px;
+	 font-weight:bold;
+	  background:url(image/span.gif) no-repeat;
+	  padding-right:50px;
+	  text-align:center;
+	  padding-left:50px;}
+a:hover{
+	color:#36F;
+}
+</style>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+	var text = $("#pri").val();
+	var conunt = text.length;
+	$(".textInput").text(100-conunt);
+	$(":input[id=pri]").keyup(function(){
+			var text = $("#pri").val();
+			var conunt = text.length;
+			$(".textInput").text(100-conunt);
+					
+			
+		});
+		
+	   $(document).bind("keydown",function(e){
+                    e = e ? e : event;
+					   var target =$("#pri");
+                    if(e.keyCode == 8){
+                       target.attr("readonly",false);
+		$(":input[id=pri]").keyup(function(){
+			var text = $("#pri").val();
+			var conunt = text.length;
+			$(".textInput").text(100-conunt);			
+		});
+					   
+                    }
+                });
+		
+	});	
+	
+
+</script>
+
+</head>
+
+
+<body>
+<div id="main">
+<div id="second">你还可以输入<var class="textInput"></var>个字</div>
+<div id="txt">
+<form action="" method="post">	
+	<label>
+      <textarea cols="30" rows="20" class="Input" id="pri" maxlength="100" ></textarea>
+	</label>
+   <a> <span class="radio">发布</span></a>
+</form>
+</div>
+</div>
+</body>
+</html>

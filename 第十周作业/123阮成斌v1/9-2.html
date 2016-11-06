@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图片提示效果</title>
+<style>
+body{
+
+	margin-left:auto;
+	margin-right:auto;
+	}
+li {
+	text-align:center;
+	float:left;
+	list-style:none;
+
+	
+	margin-right:30px;
+	border:1px solid #AAAAAA;
+	}
+#tooltip{
+	position:absolute;
+	border:1px solid #ccc;
+	background:#333;
+	padding:2px;
+	display:none;
+	color:#fff;
+}
+
+
+</style>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+		var x=10;
+		var y=30;
+		$("a.tooltip").mouseover(function(e){
+				this.myTitle = this.title;
+				this.title = "";
+				var imgTitle = this.myTitle? "<br/>"+this.myTitle:"";
+				var tooltip = "<div id='tooltip'><img src='"+this.href +"' alt='产品预揽图'/>"+imgTitle+"</div>";
+				$("body").append(tooltip);
+				$("#tooltip").css({
+					"top": (e.pageY + y) + "px",
+					"left": (e.pageX + x) + "px"
+					}).show("fast");
+			}).mouseout(function(){
+					this.title = this.myTitle;
+					$("#tooltip").remove();
+				}).mousemove(function(e){
+						$("#tooltip").css({
+						"top": (e.pageY + y) + "px",
+						"left": (e.pageX + x) + "px"
+						});
+					
+				});
+	});
+
+
+</script>
+
+</head>
+
+<body>
+<h3>有效果：</h3>
+<ul>
+	<li><a href="image/iphone5s-big.jpg" class="tooltip" title="iphone5s"><img src="image/iphone5s-small.jpg" alt="苹果 iPod"></a></li>
+    <li><a href="image/samsung-big.jpg" class="tooltip" title="三星 Note"><img src="image/samsung-small.jpg" alt="苹果 iPod nano"></a></li>
+   	<li><a href="image/xiaomiM4-big.jpg" class="tooltip" title="小米 M4"><img src="image/xiaomiM4-small.jpg" alt="苹果 iPhone"></a></li>
+</ul>
+<br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/>
+<h3>无效果：</h3>
+<ul >
+	<li><a href="image/iphone5s-big.jpg"  title="iphone5s"><img src="image/iphone5s-small.jpg" alt="苹果 iPod"></a></li>
+    <li><a href="image/samsung-big.jpg"  title="三星 Note"><img src="image/samsung-small.jpg" alt="苹果 iPod nano"></a></li>
+   	<li><a href="image/xiaomiM4-big.jpg"  title="小米 M4"><img src="image/xiaomiM4-small.jpg" alt="苹果 iPhone"></a></li>
+</ul>
+</body>
+</html>
