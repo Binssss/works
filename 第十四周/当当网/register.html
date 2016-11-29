@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>免费注册</title>
+<style>
+.top{
+	width:1100px;
+	height:60px;
+	margin:auto;
+	padding:0;
+	background:url(images/login_icon_bg_02.gif) repeat-x;}
+.top_img{
+	width:87px;
+	height:40px;
+	float:left;
+	margin-left:100px;
+	margin-top:20px;}
+
+.top_right{
+	width:250px;
+	height:20px;
+	float:right;
+	margin-top:30px;}
+a:hover {
+	text-decoration:underline;
+	color:#FC3;
+}
+a:active {
+	text-decoration: none;
+	color: #0C0;
+}
+a:link {
+	text-decoration: none;
+	color:#09F;
+}
+a:visited {
+	text-decoration: none;
+	color:#F93;
+}
+.content{
+	width:950px;
+	height:800px;
+	margin:auto;
+	padding:0;
+	margin-top:30px;}
+
+.cte_top1{
+	width:950px;
+	height:5px;}
+	
+.cte_top2{
+	width:950px;
+	height:32px;
+	text-align:center;}	
+.first{
+	width:263px;
+	height:27px;
+	float:left;
+	background:url(images/register_tag_left.gif) no-repeat;
+	font-size:20px;
+	font-weight:bold;
+	padding-left:50px;
+	text-align:center;
+	padding-top:5px;}
+.second{
+		width:263px;
+	height:27px;
+	float:left;
+	background:url(images/register_tag_mid.gif) no-repeat;
+	font-size:20px;
+	font-weight:bold;
+	padding-left:50px;
+	text-align:center;
+	padding-top:5px;
+	}
+.thrid{
+		width:263px;
+	height:27px;
+	float:left;
+	background:url(images/register_tag_right.gif) no-repeat;
+	font-size:20px;
+	font-weight:bold;
+	padding-left:50px;
+	text-align:center;
+	padding-top:5px;
+	}
+.adver{
+	width:950px;
+	height:55px;
+	margin:auto;
+	margin-top:80px;}
+.adver_img{
+	width:60px;
+	height:55px;
+	float:left;
+	margin-left:100px;}	
+.ad_con{
+	width:700px;
+	height:30px;
+	float:left;
+	margin:0;
+	padding:0;
+	font-size:20px;
+	font-weight:bold;
+	color:#000;
+	margin-left:10px;
+	margin-bottom:5px;
+	}
+.ad_con2{
+	width:700px;
+	height:18px;
+	float:left;
+	margin:0;
+	padding:0;
+	font-size:15px;
+	color:#F00;
+	margin-left:10px;}
+.regist{
+	width:950px;
+	height:400px;}
+tr td{
+	width:150px;
+	height:30px;}
+.submit{
+	cursor:pointer;}
+
+</style>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="data.js"></script>
+<script>
+		function $(element){
+			return document.getElementById(element);
+		}
+	function checkUser(){
+			var user = $("user").value;
+			var usid = $("userid");
+			usid.innerHTML = "";
+			var reg=/^[a-zA-Z][a-zA-Z_]{4,9}$/;
+			if(reg.test(user)==false){
+					usid.innerHTML = "<span style='color:red;'>用户名不正确</span>";
+					return false;
+				}else{
+					usid.innerHTML = "<img src='images/register_write_ok.gif'>";
+					return true;
+					}
+			
+		}
+	function checkPwd(){
+			var pwd = $("pwd").value;
+			var pwdid = $("pwdid");
+			pwdid.innerHTML = "";
+			var reg= /^.{6,10}$/;
+			if(reg.test(pwd)==false){
+				pwdid.innerHTML = "<span style='color:red;'>密码输入不正确</span>";
+				return false;
+				}else{
+					pwdid.innerHTML = "<img src='images/register_write_ok.gif'>";
+					return true;
+					}
+			
+		}
+	function checkRepwd(){
+			var pwd = $("pwd").value;
+			var repwd = $("repwd").value;
+			var repwdid = $("repwdid");
+			repwdid.innerHTML = "";
+			if(pwd!=repwd){
+				repwdid.innerHTML = "<span style='color:red;'>俩次输入密码不一致</span>";
+				}else{
+					repwdid.innerHTML = "<img src='images/register_write_ok.gif'>";
+					return true;
+					}
+			
+		}
+		
+	function checkEmail(){
+			var email = $("email").value;
+			var emailid = $("emailid");
+			emailid.innerHTML = "";
+			var reg=/^[a-zA-Z]+\w+@\w+\.((com)|(cn))$/;
+			if(reg.test(email)==false){
+				emailid.innerHTML = "<span style='color:red;'>邮箱格式不正确</span>";
+				return false;
+				}else{
+					emailid.innerHTML ="<img src='images/register_write_ok.gif'>";
+					return true;
+					}
+				
+		}
+			
+	
+	function check(){
+				if(checkUser() &&  checkPwd() && checkRepwd() && checkEmail()){
+			alert("注册成功！！");						
+		}else{
+			alert("只有所以表单填写正确才可以提交！！");
+			}
+		}
+		
+	window.onload =function(){
+	var province = document.getElementById("sheng");
+	var city =document.getElementById("shi");
+				
+		for(var i=0;i<world.length;i++){
+			if(world[i].id.substr(0,2)=="00"){
+				province.add(new Option(world[i].name,world[i].id));
+			}			
+		}
+
+	province.onchange=function showcity(){
+	  		city.innerHTML = "";
+			city.add(new Option("地级市"));
+		for(var i=0;i<world.length;i++){
+				if(province.value.substr(1,2)==world[i].id.substr(0,2)){
+						city.add(new Option(world[i].name,world[i].id));
+					}
+			}
+			
+	}
+	
+	
+			
+		$("man").onclick = function(){
+				this.checked == true;
+				$("feman").checked = false;
+			}
+		$("feman").onclick = function(){
+				this.checked == true;
+				$("man").checked = false;
+			}	
+	 
+}
+</script>
+</head>
+
+<body>
+<div class="top">
+<div class="top_img"><img src="images/logo.gif"></div>
+<div class="top_right"><a href="#">首页</a>|<a href="#">商品展示页</a>|<a href="#">购物车</a>|<a href="#">登录</a></div>
+</div>
+
+<div class="content">
+	<div class="cte_top1"><img src="images/register_top_bg.gif"></div>
+	<div class="cte_top2">
+	<div class="first">填写注册信息</div>
+    <div class="second">2.邮箱验证</div>
+    <div class="thrid">3.完成注册</div>
+</div>
+<div class="adver"> <img src="images/register_pic_01.gif" class="adver_img">
+					<div class="ad_con"> HI 欢迎注册当当网！尽享多重优惠服务。</div>
+                       <div class="ad_con2">您所提供的资料不会做其他用途，敬请安心填写。</div>
+                   
+</div>    
+ <div><hr /></div>   
+
+<div class="regist">
+	<table cellpadding="0" cellspacing="0" align="center">
+    <form>
+		<tr>
+        	<td style="float:right;">Email地址：</td>
+            <td><input type="text" id="email" onblur="checkEmail()"></td>
+            <td><div id="emailid"></div></td>
+        </tr>
+        <tr>
+        	<td style="float:right;">设置昵称：</td>
+            <td><input type="text" id="user" onblur="checkUser()"></td>
+            <td><div id="userid"></div></td>
+        </tr>
+        <tr>
+        	<td style="float:right;">设定密码：</td>
+            <td><input type="password" id="pwd" onblur="checkPwd()"></td>
+            <td><div id="pwdid"></div></td>
+        </tr>
+        <tr>
+        	<td style="float:right;">再输入一次密码：</td>
+            <td><input type="password" id="repwd" onblur="checkRepwd()"></td>
+            <td><div id="repwdid"></div></td>
+        </tr>
+        <tr>
+        	<td style="float:right;">性别：</td>
+            <td  colspan="2"><input type="radio" id="man" value="男" checked>男&nbsp;
+            <input type="radio" id="feman" class="input" value="女">女</td>
+        </tr>
+        <tr>
+        	<td style="float:right;">所在地区：</td>
+            <td><select id="sheng"><option>请选择省/城市</option></select></td>
+            <td><select id="shi"><option>请选择城市/地区</option></select></td>
+        </tr>
+        <tr align="center">
+        	<td colspan="3" ><img src="images/register_btn_out.gif" class="submit" onclick="check()"></td>
+        </tr>
+        </form>
+	</table>
+</div>    
+    
+</div>
+</body>
+</html>
